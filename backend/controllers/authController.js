@@ -521,8 +521,7 @@ const reorderSocials = async (req, res) => {
         }
 
         const validPlatforms = ["github", "linkedin", "twitter", "portfolio"];
-        const isValid = order.every(p => validPlatforms.includes(p));
-        if (!isValid) {
+        if (!order.every(p => typeof p === "string" && validPlatforms.includes(p))) {
             return res.status(400).json({ success: false, message: "Invalid platform name in order" });
         }
 

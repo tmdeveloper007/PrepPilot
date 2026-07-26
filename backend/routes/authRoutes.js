@@ -10,6 +10,7 @@ const {
   generalLimiter,
   sensitiveAuthLimiter,
 } = require("../middlewares/rateLimiter");
+const { sensitiveRouteHeaders } = require("../middlewares/securityHeaders");
 
 
 // Auth Routes
@@ -21,7 +22,7 @@ router.get("/profile", protect, generalLimiter, getUserProfile);
 router.put("/profile", protect, generalLimiter, updateUserProfile);
 router.put("/change-password", protect, sensitiveAuthLimiter, changePassword);
 router.delete("/delete-account", protect, sensitiveAuthLimiter, deleteUserAccount);
-router.put("/socials/reorder", protect, generalLimiter, reorderSocials);
+router.put("/socials/reorder", sensitiveRouteHeaders, protect, generalLimiter, reorderSocials);
 router.post("/resend-verification", authLimiter,  validateResendEmail, resendVerificationEmail);
 router.get("/verify-email", verifyEmail);
 
