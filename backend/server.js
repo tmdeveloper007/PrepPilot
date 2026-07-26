@@ -109,7 +109,7 @@ app.use("/api/user", generalLimiter, achievementRoutes);
 const booksRoutes = require("./routes/booksRoutes");
 const { validateGenerateInterviewQuestions, validateGenerateConceptExplanation, validateGenerateInterviewTips } = require("./Input_validators/ValidateAi.js");
 app.use("/api/resume", generalLimiter, resumeRoutes);
-app.use("/api/srs", generalLimiter, srsRoutes);
+app.use("/api/srs", sensitiveRouteHeaders, generalLimiter, srsRoutes);
 
 // AI routes with Zod validation
 app.post(
