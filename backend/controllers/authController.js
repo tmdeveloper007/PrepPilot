@@ -525,7 +525,7 @@ const reorderSocials = async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid platform name in order" });
         }
 
-        await User.findByIdAndUpdate(userId, { socialOrder: order });
+        await User.findByIdAndUpdate(userId, { $set: { socialOrder: order } });
         res.json({ success: true, message: "Social links reordered successfully" });
     } catch (error) {
         console.error("Reorder socials error:", error);
