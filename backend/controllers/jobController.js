@@ -96,7 +96,7 @@ exports.getJobs = async (req, res) => {
       return res.json({ jobs: cached.jobs, role, source: "cache" });
     }
 
-    const jobs = await fetchFromAdzuna(role, country);
+    const jobs = (await fetchFromAdzuna(role, country)).slice(0, 100);
 
     await JobCache.findOneAndUpdate(
       { cacheKey },
