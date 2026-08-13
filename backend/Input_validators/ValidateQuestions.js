@@ -29,6 +29,7 @@ const getMyQuestionsQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).optional(),
   sessionId: z.string().optional(),
   pinned: z.enum(["true", "false"]).optional(),
+  q: z.string().max(200, "Search term must be at most 200 characters").optional(),
 });
 
 
