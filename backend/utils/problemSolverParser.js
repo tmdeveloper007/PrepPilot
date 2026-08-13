@@ -55,7 +55,7 @@ function extractSection(text, heading) {
 
   const start = match.index + match[0].length;
   const next = text.slice(start).match(
-    /(?:^|\n)(?:#{1,3}\s*\**)[ ]*[A-Z][^#\n]*\**:?(?=\n|$)/
+    /(?:^|\n)(?:#{1,3}\s*\**)[ ]*[A-Za-z][^#\n]*\**:?(?=\n|$)/
   );
   const end = next ? next.index : text.length;
 
